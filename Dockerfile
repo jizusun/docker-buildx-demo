@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM python:2-slim
+FROM python:3-slim
 RUN pip install pyinstaller
 # COPY requirements.txt ./
 # RUN pip install --no-cache-dir -r requirements.txt
