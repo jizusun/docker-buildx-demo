@@ -10,8 +10,9 @@ FROM python:2-slim
 #     cd ../PyInstaller/bootloader/ \
 #     file Linux-32bit-arm/run 
 
-RUN   pip install pip==18.1 \
-            pip install pyinstaller
+RUN pip install pip==18.1
+RUN pip --version
+RUN pip install pyinstaller
 
 
 WORKDIR /app
