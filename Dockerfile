@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM python:3
+FROM python:3-slim
 
 # https://stackoverflow.com/a/55550762/3074866
 
@@ -9,9 +9,7 @@ FROM python:3
 #     python ./waf distclean all \
 #     cd ../PyInstaller/bootloader/ \
 #     file Linux-32bit-arm/run 
-RUN pip install pip==18.1; \
-    pip --version ;\
-    pip install pyinstaller
+RUN pip install pyinstaller
 
 WORKDIR /app
 COPY . .
