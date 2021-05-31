@@ -51,6 +51,12 @@ jobs:
             apt-get install -q -y git python gcc
             python --version
 
+            pip install pip==18.1
+            pip install pyinstaller
+
+            python -m pip install --upgrade pip
+
+            
             git clone https://github.com/pyinstaller/pyinstaller 
             cd pyinstaller/bootloader 
             python ./waf distclean all 
