@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM python:2-slim
+FROM python:3
 
 # https://stackoverflow.com/a/55550762/3074866
 
@@ -12,7 +12,7 @@ FROM python:2-slim
 
 RUN pip install pip==18.1
 RUN pip --version
-RUN pip install pyinstaller==3.4
+RUN pip install pyinstaller
 
 
 WORKDIR /app
