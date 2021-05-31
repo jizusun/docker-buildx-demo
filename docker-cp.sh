@@ -2,12 +2,9 @@
 
 id=$(docker run -itd jizu/multiarch-example:latest sh)
 
-mkdir bin
-
-docker cp $id:/root/main bin/main
-file ./bin/main
-./bin/main
-
+docker cp $id:/root/main main
+file main
+./main
 
 docker stop $id
 docker rm -v $id
