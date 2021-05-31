@@ -47,8 +47,10 @@ jobs:
             uname -a
             echo ::set-output name=uname::$(uname -a)
 
+            apt-get update -q -y
+            apt-get install -q -y git
+
             git clone https://github.com/pyinstaller/pyinstaller 
-            
             cd pyinstaller/bootloader 
             python ./waf distclean all 
             cd ../PyInstaller/bootloader/ 
