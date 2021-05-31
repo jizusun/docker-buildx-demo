@@ -12,7 +12,7 @@ FROM python:2-slim
 
 RUN pip install pip==18.1
 RUN pip --version
-RUN pip install pyinstaller
+RUN pip install pyinstaller==3.4
 
 
 WORKDIR /app
