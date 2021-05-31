@@ -10,11 +10,11 @@ FROM python:3
 #     cd ../PyInstaller/bootloader/ \
 #     file Linux-32bit-arm/run 
 
-RUN pip install pip==18.1
-RUN pip --version
-RUN pip install pyinstaller
-
-
+RUN pip install pip==18.1; \
+    pip --version ;\
+    pip install pyinstaller ;\
+    pyinstaller --onefile --distpath ./bin main.py; \
+    file bin/main
 WORKDIR /app
 COPY . .
 CMD [ "python", "./main.py"]
