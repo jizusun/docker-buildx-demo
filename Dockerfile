@@ -9,12 +9,12 @@ FROM python:3
 #     python ./waf distclean all \
 #     cd ../PyInstaller/bootloader/ \
 #     file Linux-32bit-arm/run 
-
 RUN pip install pip==18.1; \
     pip --version ;\
-    pip install pyinstaller ;\
-    pyinstaller --onefile --distpath ./bin main.py; \
-    file bin/main
+    pip install pyinstaller
+
 WORKDIR /app
 COPY . .
+RUN pyinstaller --onefile --distpath ./bin main.py; \
+    file bin/main
 CMD [ "python", "./main.py"]
