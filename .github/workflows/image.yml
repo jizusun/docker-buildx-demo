@@ -36,7 +36,7 @@ jobs:
         id: runcmd
         with:
           arch: armv7
-          distro: ubuntu18.04
+          distro: buster
 
           # Not required, but speeds up builds by storing container images in
           # a GitHub package registry.
