@@ -48,7 +48,8 @@ jobs:
             echo ::set-output name=uname::$(uname -a)
 
             apt-get update -q -y
-            apt-get install -q -y git
+            apt-get install -q -y git python
+            python --version
 
             git clone https://github.com/pyinstaller/pyinstaller 
             cd pyinstaller/bootloader 
