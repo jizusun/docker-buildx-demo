@@ -9,9 +9,9 @@ FROM python:2
 #     cd ../PyInstaller/bootloader/ \
 #     file Linux-32bit-arm/run 
 # RUN pip install pyinstaller
-RUN pip install -r requirements.txt
 WORKDIR /app
 COPY . .
+RUN pip install -r requirements.txt
 RUN pyinstaller --onefile --distpath ./bin main.py; \
     file bin/main
 CMD [ "python", "./main.py"]
