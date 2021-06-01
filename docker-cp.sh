@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-id=$(docker run -itd jizu/multiarch-example:latest sh)
+docker pull jizu/multiarch-github-actions:latest 
+id=$(docker run -itd jizu/multiarch-github-actions:latest sh)
 
 docker cp $id:/root/main main
 file main
