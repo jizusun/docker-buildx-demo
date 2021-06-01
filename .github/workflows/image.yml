@@ -1,8 +1,6 @@
 name: build our image
 
-on:
-  push:
-    branches: master
+on: push
 
 jobs:
   build_image:
@@ -28,6 +26,18 @@ jobs:
             --tag jizu/multiarch-github-actions:latest 
 
           sh docker-cp.sh
+          cp main main-linux-armv7
+          file main-linux-armv7
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: main-linux-armv7
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
           
         # --platform linux/amd64,linux/arm/v7,linux/arm64 .
 
