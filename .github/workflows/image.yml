@@ -20,34 +20,40 @@ jobs:
       - name: build and push the image
         run: |
           docker buildx build --push \
-            --tag jizu/multiarch-github-actions:latest \
-            --platform linux/arm/v7 .
+            --platform linux/arm/v7 . \
+            --tag jizu/multiarch-github-actions:latest 
+
+          docker buildx build --push \
+            --platform linux/arm/v7 . \
+            --tag jizu/multiarch-github-actions:latest 
+
+          sh docker-cp.sh
+          
         # --platform linux/amd64,linux/arm/v7,linux/arm64 .
 
-  armv7_job:
-    # The host should always be Linux
-    runs-on: ubuntu-18.04
-    name: Build on debian buster armv7
-    steps:
-      - uses: actions/checkout@v2.1.0
-      - uses: uraimo/run-on-arch-action@v2.0.5
-        name: Run commands
-        id: runcmd
-        with:
-          arch: armv7
-          distro: buster
+  # armv7_job:
+  #   # The host should always be Linux
+  #   runs-on: ubuntu-18.04
+  #   name: Build on debian buster armv7
+  #   steps:
+  #     - uses: actions/checkout@v2.1.0
+  #     - uses: uraimo/run-on-arch-action@v2.0.5
+  #       name: Run commands
+  #       id: runcmd
+  #       with:
+  #         arch: armv7
+  #         distro: buster
 
-          # Not required, but speeds up builds by storing container images in
-          # a GitHub package registry.
-          githubToken: ${{ github.token }}
+  #         # Not required, but speeds up builds by storing container images in
+  #         # a GitHub package registry.
+  #         githubToken: ${{ github.token }}
 
-          # Set an output parameter `uname` for use in subsequent steps
-          run: |
-            uname -a
-            echo ::set-output name=uname::$(uname -a)
-            sh docker-cp.sh
+  #         # Set an output parameter `uname` for use in subsequent steps
+  #         run: |
+  #           uname -a
+  #           echo ::set-output name=uname::$(uname -a)
 
-      - name: Get the output
-        # Echo the `uname` output parameter from the `runcmd` step
-        run: |
-          echo "The uname output was ${{ steps.runcmd.outputs.uname }}"      
+  #     - name: Get the output
+  #       # Echo the `uname` output parameter from the `runcmd` step
+  #       run: |
+  #         echo "The uname output was ${{ steps.runcmd.outputs.uname }}"      
