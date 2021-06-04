@@ -10,14 +10,15 @@ FROM python:2
 #     file Linux-32bit-arm/run 
 # RUN pip install pyinstaller
 WORKDIR /app
-COPY . .
+COPY requirements.txt .
 RUN pip install -r requirements.txt
+COPY . .
 RUN pyinstaller --onefile --distpath ./bin main.py; \
     file bin/main
 CMD [ "python", "./main.py"]
 
 
-FROM alpine:latest  
-WORKDIR /root/
+FROM debian:buster-slim
+WORKDIR /app/
 COPY --from=0 /app/bin/main .
 CMD ["./main"]  
